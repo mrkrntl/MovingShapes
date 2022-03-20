@@ -1,24 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package basicshape;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Random;
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-/**
- *
- * @author EL
- */
-class BSPanel extends JPanel {
+class MSFrame extends JPanel {
     
     // square
     public int squareX = 100;
@@ -44,19 +30,19 @@ class BSPanel extends JPanel {
     //DIMENSION
     private int WIDTH = 640;
     private int HEIGHT = 360;
-    
-    public BSPanel() {
-    }
         
     public Dimension getPreferredSize() {
         return new Dimension(WIDTH,HEIGHT);
     }
     
+    //printing components to the Java Frame or Window Panel
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        
         //title
         g.setColor(Color.CYAN);
         g.drawString("Activity 5", 10, 20);
+        
         //members
         g.drawString("Members:", 10, 45);
         g.drawString("Princess Joy Borlagdan", 10, 60);
@@ -74,17 +60,20 @@ class BSPanel extends JPanel {
         g.fillRect(squareX,squareY,squareW,squareH);
         g.setColor(Color.WHITE);
         g.drawRect(squareX,squareY,squareW,squareH);
+        
         //Oval
         g.setColor(Color.YELLOW);
         g.fillOval(OvalX, OvalY, OvalW, OvalH);
         g.setColor(Color.WHITE);
         g.drawOval(OvalX, OvalY, OvalW, OvalH);
+        
         //Ring
         g.setColor(Color.RED);
         g.drawOval(RingX, RingY, 50, 50);
        
     }
     
+    //for generating Red Ring coordinates, even numbers divisible by 10 because the movement of shapes is by 10 pixels
     public int RandomEvenGenerator(int min, int max){
         int RandomInt = 0;
         while (true){
@@ -98,6 +87,7 @@ class BSPanel extends JPanel {
         return RandomInt;
     }
     
+    //FOR CHECKING IF SHAPE IS IN THE BORDER OF THE WINDOW
     public boolean hitEdgeX(int point) {
        
         if(point >= (this.WIDTH - 20) || point <= 0) {
@@ -115,6 +105,7 @@ class BSPanel extends JPanel {
         }
     }  
     
+    //FOR CHECKING IF SQUARE BOX IS IN BORDER OF CIRCLE/OVAL
     public boolean checkMoveRightOvalX(int pointX, int pointY) {
         if(pointY > OvalY-20 && pointY < OvalY+50) {
             if (pointX == OvalX-10) {
@@ -150,6 +141,5 @@ class BSPanel extends JPanel {
         }
         return false;
     }
-    
-    
+      
 }
